@@ -28,7 +28,7 @@ def searchX(tab: list, size: int, x: int):
 
 def equalArray(ar1, ar2, size):
 	for j in range(size):
-		if ((ar1[j] != ar2[j]).all()):
+		if (not np.array_equal(ar1[j], ar2[j])):
 			return False
 	return True
 

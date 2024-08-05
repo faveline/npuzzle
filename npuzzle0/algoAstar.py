@@ -34,21 +34,21 @@ def Down(idx, newSet):
 	newSet.parent = DOWN
 
 
-def newSetDRLU(idx, next, open:list , close:list , data, move):
+def newSetDRLU(idx, next, open, close, data, move):
 	data.totalOpen += 1
 	newSet = dataAlgo(deepcopy(next.tab), next.g + 1, deepcopy(next.order))
 	move(idx, newSet)
 	if (searchList(newSet, close) == 0 or searchList(newSet, open) == 0):
 		return
-	
+
 	if (newSet.tab == data.goal):
 		newSet.order.append(newSet.tab[idx[0]][idx[1]])
 		data.result = newSet.order
 		data.resultNbr = newSet.g
 		data.success = True
 		return
-	
-	newSet.h = heur(newSet.tab, data.goal, data.size, idx)
+
+	newSet.h = heur(newSet.tab, data.goal, data.size, data.fct)
 	newSet.f = newSet.g + data.w * newSet.h
 	newSet.order.append(newSet.tab[idx[0]][idx[1]])
 	open.append(newSet)
@@ -67,7 +67,7 @@ def algoA(open: list, close: list, data):
 		newSetDRLU(idx, next, open, close, data, Right)
 	if (data.success is True):
 		print("success!")
+		print("heuristic used:", data.fct)
 		print("Nbr of moves:", data.resultNbr, "\nMoves:", data.result)
 		return True
-	# print(len(open), len(close), data.totalOpen)
 	return False

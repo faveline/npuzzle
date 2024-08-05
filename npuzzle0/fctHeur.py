@@ -1,15 +1,39 @@
 from fctAlgo import searchX
 
 def heurManAll(tab: list, goal: list, size: int) -> int:
+	"""Manhattan"""
 	h = 0
-	for i in range(size * size):
-		h += abs(searchX(tab, size, i)[0] - searchX(goal, size, i)[0]) + \
-			abs(searchX(tab, size, i)[1] - searchX(goal, size, i)[1])
+	for i in range(1, size * size):
+		a = searchX(tab, size, i)
+		b = searchX(goal, size, i)
+		h += abs(a[0] - b[0]) + abs(a[1] - b[1])
 	return h
 
+def heurHamAll(tab: list, goal: list, size: int) -> int:
+	"""Hamming"""
+	h = 0
+	for i in range(1, size * size):
+		pos = searchX(tab, size, i)
+		h += i ^ goal[pos[0]][pos[1]]
+	return h
 
-def heur(tab: list, goal: list, size: int, idx: list) -> int:
-	return heurManAll(tab, goal, size)
-	# nbr = tab[idx[0]][idx[1]]
-	# return abs(idx[0] - searchX(goal, size, nbr)[0]) + \
-	# 	abs(idx[1] - searchX(goal, size, nbr)[1])
+def heurEuclAll(tab: list, goal: list, size: int) -> int:
+	"""Euclidienne"""
+	h = 0
+	for i in range(1, size * size):
+		a = searchX(tab, size, i)
+		b = searchX(goal, size, i)
+		h += pow(pow(a[0] - b[0], 2) + pow(a[1] - b[1], 2), 0.5)
+	return h
+
+def heurChebAll(tab: list, goal: list, size: int) -> int:
+	"""Chebyshev"""
+	h = 0
+	for i in range(1, size * size):
+		a = searchX(tab, size, i)
+		b = searchX(goal, size, i)
+		h += max(abs(a[0] - b[0]), abs(a[1] - b[1]))
+	return h
+
+def heur(tab: list, goal: list, size: int, fct) -> int:
+	return fct(tab, goal, size)
