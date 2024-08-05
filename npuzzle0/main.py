@@ -3,7 +3,7 @@ from dataClass import dataAlgo, dataSol
 from algoAstar import algoA
 from fctAlgo import printTab
 from parsing import isSolv
-from fctHeur import heurEuclAll, heurManAll, heurChebAll, heurHamAll
+from fctHeur import manhattanE, hammingE, euclidienneE, chebyshevE
 import random
 import time
 
@@ -31,7 +31,7 @@ def main():
 	open = []
 	close = []
 	open.append(dataAlgo(puzzle, 0, []))
-	data = dataSol(size, 100, goal, [], heurManAll)
+	data = dataSol(size, 100, goal, [], euclidienneE)
 	printTab("puzzle initiale:", puzzle, data)
 	printTab("goal to reach:", goal, data)
 	if (not isSolv(puzzle, goal, size)):

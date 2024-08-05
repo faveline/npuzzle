@@ -1,6 +1,6 @@
 from fctAlgo import searchX
 
-def heurManAll(tab: list, goal: list, size: int) -> int:
+def manhattanE(tab: list, goal: list, size: int) -> int:
 	"""Manhattan"""
 	h = 0
 	for i in range(1, size * size):
@@ -9,7 +9,7 @@ def heurManAll(tab: list, goal: list, size: int) -> int:
 		h += abs(a[0] - b[0]) + abs(a[1] - b[1])
 	return h
 
-def heurHamAll(tab: list, goal: list, size: int) -> int:
+def hammingE(tab: list, goal: list, size: int) -> int:
 	"""Hamming"""
 	h = 0
 	for i in range(1, size * size):
@@ -17,7 +17,7 @@ def heurHamAll(tab: list, goal: list, size: int) -> int:
 		h += i ^ goal[pos[0]][pos[1]]
 	return h
 
-def heurEuclAll(tab: list, goal: list, size: int) -> int:
+def euclidienneE(tab: list, goal: list, size: int) -> int:
 	"""Euclidienne"""
 	h = 0
 	for i in range(1, size * size):
@@ -26,7 +26,7 @@ def heurEuclAll(tab: list, goal: list, size: int) -> int:
 		h += pow(pow(a[0] - b[0], 2) + pow(a[1] - b[1], 2), 0.5)
 	return h
 
-def heurChebAll(tab: list, goal: list, size: int) -> int:
+def chebyshevE(tab: list, goal: list, size: int) -> int:
 	"""Chebyshev"""
 	h = 0
 	for i in range(1, size * size):
