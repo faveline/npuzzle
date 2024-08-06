@@ -1,4 +1,4 @@
-from fctAlgo import findSmallF, printTab, searchX, searchList
+from fctAlgo import findSmallF, printTab, searchX, searchList, objOrder
 from dataClass import dataAlgo
 from copy import deepcopy
 from fctHeur import heur
@@ -52,6 +52,7 @@ def newSetDRLU(idx, next, open, close, data, move):
 	newSet.f = newSet.g + data.w * newSet.h
 	newSet.order.append(newSet.tab[idx[0]][idx[1]])
 	open.append(newSet)
+	# objOrder(newSet, open)
 	
 
 def algoA(open: list, close: list, data):
@@ -66,8 +67,5 @@ def algoA(open: list, close: list, data):
 	if (next.parent != LEFT and idx[1] < data.size - 1):
 		newSetDRLU(idx, next, open, close, data, Right)
 	if (data.success is True):
-		print("success!")
-		print("heuristic used:", data.fct)
-		print("Nbr of moves:", data.resultNbr, "\nMoves:", data.result)
 		return True
 	return False

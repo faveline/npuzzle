@@ -36,3 +36,10 @@ def searchList(tab, open):
 				open.remove(open[i])
 				return 1
 	return 1
+
+def objOrder(newSet, open):
+	for i in range(len(open)):
+		if (newSet.f < open[i].f):
+			open.insert(i, newSet)
+			return
+	open.append(newSet)
