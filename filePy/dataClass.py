@@ -21,3 +21,4 @@ class dataSol:
 	result: list
 	resultNbr: int = field(default=0, init=False)
 	fct: int #int is only to initialize, it's really the heuristic function
+	puzzleIni: list

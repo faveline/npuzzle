@@ -2,16 +2,22 @@ from npuzzleGen import make_puzzle, make_goal
 from dataClass import dataAlgo, dataSol
 from algoAstar import algoA
 from fctAlgo import printTab
-from parsing import isSolv
+from parsing import isSolv, parser
 from fctHeur import manhattanE, hammingE, euclidienneE, chebyshevE
 from result import result
 import random
 import time
+import sys
 
 
 def main():
 	random.seed()
-
+	# try:
+	# 	parser(len(sys.argv), sys.argv)
+	# except Exception as msg:
+	# 	print(msg)
+	# 	return
+	parser(len(sys.argv), sys.argv)
 	size = 3
 	puzzleIni = make_puzzle(size, True, 10000)
 	# puzzleIni = [12, 1, 2, 4, 0, 13, 14, 5, 10, 8, 3, 6, 11, 9, 7, 15] # exemple w=100 1sec w=1 100sec
@@ -32,7 +38,7 @@ def main():
 	open = []
 	close = []
 	open.append(dataAlgo(puzzle, 0, []))
-	data = dataSol(size, 100, goal, [], euclidienneE)
+	data = dataSol(size, 100, goal, [], euclidienneE, puzzle)
 	printTab("puzzle initiale:", puzzle, data)
 	printTab("goal to reach:", goal, data)
 	if (not isSolv(puzzle, goal, size)):
