@@ -7,7 +7,7 @@ def result(puzzleIni, data):
 	for i in range(size):
 		puzzle[i] = puzzleIni[size * i:size * (i + 1)]
 	try:
-		f = open("result.txt", "w")
+		f = open("../result.txt", "w")
 	except:
 		return
 	f.write("\n".join([str(ele) for ele in puzzle]) + "\n\n")
